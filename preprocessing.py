@@ -54,14 +54,14 @@ def load_dataset(path, n_random_sampling=0):
     for k, s in enumerate(tqdm(path)): 
         # Get the 3D mesh, add the signed distance function and slice it to return in 2D.
         
-        internal = pv.read('/notebooks/Dataset/' + s + '/' + s + '_internal.vtu')
+        internal = pv.read(s + '_internal.vtu')
         # internal = pv.read(osp.join('Dataset', s, s + '_internal.vtu'))
 
         internal = internal.compute_cell_sizes(length = False, volume = False)
-        aerofoil = pv.read('/notebooks/Dataset/' + s + '/' + s + '_aerofoil.vtp')
+        aerofoil = pv.read(s + '_aerofoil.vtp')
         # aerofoil = pv.read(osp.join('Dataset', s, s + '_aerofoil.vtp'))
 
-        freestream = pv.read('/notebooks/Dataset/' + s + '/' + s + '_freestream.vtp')
+        freestream = pv.read(s + '_freestream.vtp')
         # freestream = pv.read(osp.join('Dataset', s, s + '_freestream.vtp'))
 
         geom = -internal.point_data['implicit_distance'][:, None]
