@@ -42,8 +42,10 @@ class FourierLayer(torch.nn.Module):
         return torch.fft.irfft2(out_ft)
 
     def get_grid(self, size):
-        grid = torch.stack(torch.meshgrid(torch.fft.fftfreq(size), torch.fft.fftfreq(size), indexing='ij'), dim=-1)
+        freqs = torch.fft.fftfreq(size)[:self.width]  # Limit the frequency range to the layer's width
+        grid = torch.stack(torch.meshgrid(freqs, freqs, indexing='ij'), dim=-1)
         return grid.to(device)
+
 
 class FNO2d(torch.nn.Module):
     def __init__(self, modes, width):
