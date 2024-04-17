@@ -63,5 +63,5 @@ if __name__ == "__main__":
     model.to(device)
 
     print(f"Started Training.")
-    model.train(101)
+    model.train(11)
     print(f"Finished Training.")
