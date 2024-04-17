@@ -122,9 +122,9 @@ def load_dataset(path, n_random_sampling=0):
                                         
                                         ], axis = -1)
                         
-        init_train = np.concatenate([freestream_attr[:, :3], aerofoil_attr[:, :3], internal_attr_sample[:, :3]], axis = 0) 
+        init_train = np.concatenate([freestream_attr[:, :5], aerofoil_attr[:, :5], internal_attr_sample[:, :5]], axis = 0) 
    
-        target_train = np.concatenate([freestream_attr[:, 3:], aerofoil_attr[:, 3:], internal_attr_sample[:, 3:]], axis = 0)
+        target_train = np.concatenate([freestream_attr[:, 5:], aerofoil_attr[:, 5:], internal_attr_sample[:, 5:]], axis = 0)
 
         # Put everything in tensor
         x_train = torch.tensor(init_train, dtype = torch.float64)
