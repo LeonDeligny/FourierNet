@@ -35,7 +35,7 @@ class FourierLayer(torch.nn.Module):
         out_ft = torch.zeros_like(x_ft)
         for i in range(self.width):
             for j in range(self.width):
-                k1, k2 = grid[i, j] * self.scale
+                k1, k2 = int(grid[i, j, 0] * self.scale), int(grid[i, j, 1] * self.scale)
                 weight = self.weights[i, j]
                 complex_weight = torch.complex(weight[0], weight[1])
                 out_ft += complex_weight * x_ft.roll(shifts=(-k1, -k2), dims=(-2, -1))
