@@ -62,7 +62,7 @@ class FNO2d(torch.nn.Module):
 
 class FourierNeuralOperatorNN(torch.nn.Module):
     def __init__(self, modes, width, df_train, df_aerofoil, mean_variance_dict, len_list, u_inlet, v_inlet, gamma_1, gamma_2, gamma_3):
-        super(RANSPINNModel, self).__init__()
+        super(FourierNeuralOperatorNN, self).__init__()
         self.x = torch.tensor(df_train['x'].astype(float).values, requires_grad=True).float().unsqueeze(1).to(device)
         self.y = torch.tensor(df_train['y'].astype(float).values, requires_grad=True).float().unsqueeze(1).to(device)
         self.sdf = torch.tensor(df_train['sdf'].astype(float).values).float().unsqueeze(1).to(device)
