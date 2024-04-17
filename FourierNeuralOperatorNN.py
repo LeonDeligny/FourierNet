@@ -30,7 +30,7 @@ class FourierLayer(torch.nn.Module):
         self.weights = torch.nn.Parameter(torch.randn(self.width, self.width, 2))
 
     def forward(self, x):
-        grid = self.get_grid(x.shape[-1], device=x.device)
+        grid = self.get_grid(x.shape[-1])
         x_ft = torch.fft.rfft2(x)
         out_ft = torch.zeros_like(x_ft)
         for i in range(self.width):
@@ -43,7 +43,7 @@ class FourierLayer(torch.nn.Module):
 
     def get_grid(self, size):
         grid = torch.stack(torch.meshgrid(torch.fft.fftfreq(size), torch.fft.fftfreq(size), indexing='ij'), dim=-1)
-        return grid
+        return grid.to(device)
 
 class FNO2d(torch.nn.Module):
     def __init__(self, modes, width):
