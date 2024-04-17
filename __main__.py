@@ -50,7 +50,7 @@ if __name__ == "__main__":
     from plot import plot_predictions_vs_test, plot_test
 
     # Train the model
-    model = FourierNeuralOperatorNN(df_train, df_aerofoil, mean_variance_dict, len_list, u_inlet, v_inlet, gamma_1, gamma_2, gamma_3)
+    model = FourierNeuralOperatorNN(12, 20, df_train, df_aerofoil, mean_variance_dict, len_list, u_inlet, v_inlet, gamma_1, gamma_2, gamma_3)
     if torch.cuda.device_count() > 1:
         print(f"Let's use {torch.cuda.device_count()} GPUs!")
         model = torch.nn.DataParallel(model)
