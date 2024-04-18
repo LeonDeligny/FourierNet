@@ -35,10 +35,10 @@ class FourierLayer(torch.nn.Module):
         out_ft = torch.zeros_like(x_ft)
         for i in range(self.width):
             for j in range(self.width):
-                print(grid)
-                print(grid.shape)
                 if i >= self.width or j >= self.width:
                     raise IndexError(f"Index out of bounds: i={i}, j={j}, width={self.width}")
+                print(f"i: {i}, j: {j}")
+                print(grid.shape)
 
                 k1, k2 = int(grid[i, j, 0] * self.scale), int(grid[i, j, 1] * self.scale)
                 weight = self.weights[i, j]
