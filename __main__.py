@@ -85,10 +85,11 @@ if __name__ == "__main__":
     output_tensor_torch = torch.from_numpy(output_interpolated_reshaped[np.newaxis, ...])
 
     print("Datasets Loaded.")
-    from models.PIMNN_Phy_Bc import PIMNN_Phy_Bc
+
+    from FourierNeuralOperatorNN import FourierNeuralOperatorNN
 
     # Train the model
-    model = PIMNN_Phy_Bc(input_tensor_torch, output_tensor_torch)
+    model = FourierNeuralOperatorNN(input_tensor_torch, output_tensor_torch)
     if torch.cuda.device_count() > 1:
         print(f"Let's use {torch.cuda.device_count()} GPUs!")
         model = torch.nn.DataParallel(model)
